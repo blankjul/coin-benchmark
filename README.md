@@ -11,11 +11,6 @@ Michigan State University <br/>
 Inventing new algorithms and implementations new ideas does require to test the results on well-known test problems. In order to provide easily access to results this benchmark project is established. It provides results of algorithms (and also implementations in different languages) to ensure the correctness of these implementations.
 
 
-## Content
-
-Results for the Test Problems:
-
-
 
 ## Usage
 
