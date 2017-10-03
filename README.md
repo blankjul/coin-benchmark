@@ -14,15 +14,12 @@ Inventing new algorithms and implementations new ideas does require to test the 
 
 ## Usage
 
-For each problem, each algorithm is executed several times. Each time the run should be equal to the random seed. That means if the algorithm is used again with the same random seed or run number the same result should be produced. This ensured reproducibility for all runs. If it is not possible to use the run as a random seed (e.g. sometimes the seed needs to be real between 0 and 1) comments can be added to the files for each run.
-
-The specification for each experiment is done in the <problem>.params file. Since many problems do have different parameters (number of variables, number of objectives, other parameters to change the difficulty of the problem) it is necessary to fix those parameters before executing the experiment. Moreover, the number of evaluations should of be equally for all algorithms over all runs. Because also different implementation in different programming languages are compared also evolutionary parameters, e.g. population size or mutation probability, are listed.
+The experimental paremeters are stated in the <problem>.params file. Since many problems do have different parameters (number of variables, number of objectives in addition to other parameters to change the difficulty of the problem) it is necessary to set those parameters before executing the experiment. Moreover, the number of evaluations should of be equal for all algorithms over all runs. Main evolutionary parameters are also listed e.g. population size or mutation probability. __These experimantal setups (.params files) will be provided to you beforehand__.
 
 Each experiment setup is defined in one file:
 
 __.params__
 ```
-name=ZDT1
 n_var = 5
 n_obj = 2
 n_constr = 0
@@ -36,7 +33,7 @@ eta_c = 15
 ....
 ```
 
-Furthermore, each run produces two files:
+For each run of one algorithm you should report two files. Their description goes as follows:
 
 __.obj__
 
@@ -51,11 +48,12 @@ This file provides the objective space of all __feasible non-dominated__ solutio
 
 __.hist__
 
-The .hist (hist for history) provides for each run the possibility to watch the convergence over time. Additionally, the final population can also be seen in more detail because more information is provided. 
-The file contains for all solutions for each generation (including infeasible and dominated ones) with the number of evaluations, design variable, objectives and constraints.
+The .hist (hist for history) provides for each run the possibility to watch the behaviour over time. Additionally, the final population can also be seen in more detail because more information is provided.
+The file contains all solutions of each generation (including infeasible and dominated ones) along with the corresponding number of evaluations, design variables, objectives and *constraint violation (CV)* values.
 
 The following examples shows a multi-objective genetic algorithm with a population size of 3 for 2 generations.
-The problem does have 2 input variables, 2 objectives and 1 constraint.
+The problem does have 2 design variables, 2 objectives and 1 constraint. Notice that we assume >= constraints.
+In other words, *CV* values are either negative (infeasible) or Zero (feasible).
 
 ```
 100 0.546456 0.1234534 0.959856 0.835000  -1.545
@@ -69,11 +67,14 @@ The problem does have 2 input variables, 2 objectives and 1 constraint.
 The line can be interpreted as follows: ```<evals> <var1> <var2> <obj1> <obj2> <constr1>```
 
 
-## Folder Structure
+## File Naming and Folder Structure
 
 
-The name pattern is as follows: ```<algorithm>_<problem>_<run>.<extension>``` where each tag should be substituted with the correct type (without <>), e.g. cNSGA_ZDT1_1.obj
+File name pattern is as follows: ```<algorithm>_<problem>_<run>.<extension>``` where each tag should be substituted with the correct type (without <>), e.g. cNSGA_ZDT1_1.obj
+- __Underscores can only be used for separation in the designated spot specified. Do not use them in the name of your algorithm and/or problem__.
+- __Stick to lowercase letters in all file names__.
 
+```
     .
     ├── <algorithm1>                                            # each algorithm has its own directory
     ├── <algorithm2>     
@@ -83,9 +84,36 @@ The name pattern is as follows: ```<algorithm>_<problem>_<run>.<extension>``` wh
     ├── <problem2>.params                      
     ├── LICENSE
     └── README.md
+```
 
+Take a look at the follwoing example:
 
+ ```
+    .
+    ├── cnsga2                                           
+        ├── cnsga2_zdt1_001.obj                   
+        ├── cnsga2_zdt1_001.hist                  
+        ├── cnsga2_zdt1_002.obj                  
+        ├── cnsga2_zdt1_002.hist               
+        ├── cnsga2_zdt2_001.obj                 
+        ├── cnsga2_zdt2_001.hist             
+        ├── cnsga2_zdt2_002.obj              
+        ├── cnsga2_zdt2_002.hist
+    ├── pynsga2     
+        ├── pynsga2_zdt1_001.obj
+        ├── pynsga2_zdt1_001.hist
+        ├── pynsga2_zdt1_002.obj 
+        ├── pynsga2_zdt1_002.hist
+        ├── pynsga2_zdt2_001.obj 
+        ├── pynsga2_zdt2_001.hist
+        ├── pynsga2_zdt2_002.obj 
+        ├── pynsga2_zdt2_002.hist
+    ├── zdt1.params              
+    ├── zdt2.params                      
+    ├── LICENSE
+    └── README.md
+```
 
 ## Contributing
 
-
+In order to cntribute to this project, you can either push your files directory to GitHub (recommended) or you can send it to either blankjul@egr.msu.edu or seadahai@msu.edu
