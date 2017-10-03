@@ -1,26 +1,31 @@
 
 # Optimization Benchmark
 
-Computational Optimization and Innovation Laboratory (COIN)
-
-Computer Science and Engineering
-
-Michigan State University
+Computational Optimization and Innovation Laboratory (COIN)<br/>
+Computer Science and Engineering <br/>
+Michigan State University <br/>
 
 
 ## Purpose
 
-Inventing new algorithms and implementations new ideas does require to test the results on well known test problems. In order to provide easily access to results this benchmark project is established. It provides results of algorithms (and also implementations in different languages) to ensure the correctness of these implementations.
+Inventing new algorithms and implementations new ideas does require to test the results on well-known test problems. In order to provide easily access to results this benchmark project is established. It provides results of algorithms (and also implementations in different languages) to ensure the correctness of these implementations.
+
+
+## Content
+
+Results for the Test Problems:
+
+
 
 ## Usage
 
-For each problem each algorithm was runned several times. Each times the run should be equal to the random seed. That means if the algorithm is used again with the same random seed or run number the same result should be produced. This ensured reproduciblity for all runs. If it is not possible to use the run as a random seed (e.g. sometimes the seed needs to be real between 0 and 1) comments can be added to the files for each run.
+For each problem, each algorithm is executed several times. Each time the run should be equal to the random seed. That means if the algorithm is used again with the same random seed or run number the same result should be produced. This ensured reproducibility for all runs. If it is not possible to use the run as a random seed (e.g. sometimes the seed needs to be real between 0 and 1) comments can be added to the files for each run.
 
-The specification for each experiment is done in the <problem>.params file. Since many problems do have different paramaters (number of variables, number of objectes, other parameters to change the difficulty of the problem) it is necessary to fix those parameters before executing the experiment. Moreover, the number of evaluations should of be equally for all algorithms over all runs. Because also different implemenation in different programming languages are compared also evoluationary parameters, e.g. population size or mutation probabilty, are listed.
+The specification for each experiment is done in the <problem>.params file. Since many problems do have different parameters (number of variables, number of objectives, other parameters to change the difficulty of the problem) it is necessary to fix those parameters before executing the experiment. Moreover, the number of evaluations should of be equally for all algorithms over all runs. Because also different implementation in different programming languages are compared also evolutionary parameters, e.g. population size or mutation probability, are listed.
 
 Each experiment setup is defined in one file:
 
-### .params
+__.params__
 ```
 name=ZDT1
 n_var = 5
@@ -38,9 +43,9 @@ eta_c = 15
 
 Furthermore, each run produces two files:
 
-### .obj
+__.obj__
 
-This file provides the objective space of all feasible non-dominated solutions seperated by tabs without header. Each lines represents one solution.
+This file provides the objective space of all __feasible non-dominated__ solutions separated by tabs or whitespaces without header. Each line represents one solution.
         e.g.
 
 ```
@@ -49,10 +54,10 @@ This file provides the objective space of all feasible non-dominated solutions s
 1.115670 1.043340
 ```
 
-### .hist
+__.hist__
 
-The hist (hist for history) should provide for each run the possiblity to watch the convergence over time. Additionally, the final population can also be seen in more detail because more information are provided. 
-The file contains for all solutions for each generation (also infeasible and dominated ones) with the number of evaluations, design variable, objectives and constraints.
+The .hist (hist for history) provides for each run the possibility to watch the convergence over time. Additionally, the final population can also be seen in more detail because more information is provided. 
+The file contains for all solutions for each generation (including infeasible and dominated ones) with the number of evaluations, design variable, objectives and constraints.
 
 The following examples shows a multi-objective genetic algorithm with a population size of 3 for 2 generations.
 The problem does have 2 input variables, 2 objectives and 1 constraint.
@@ -87,4 +92,5 @@ The name pattern is as follows: ```<algorithm>_<problem>_<run>.<extension>``` wh
 
 
 ## Contributing
+
 
